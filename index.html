@@ -21,6 +21,18 @@
       vertical-align: middle;
     }
 
+    .icon {
+      border: 2px solid #cccccc;
+      border-radius: 25%;
+      background-color: #eeeeee;
+    }
+
+    .icon.on {
+      border-color: #97C88C;
+      border-radius: 25%;
+      background-color: #E0EEDC;
+    }
+
     .val_0 {
       background-color: #FFFFFF;
     }
@@ -61,6 +73,14 @@
 
 <body>
   <div id="game">
+  </div>
+  <br />
+  <div id="controls">
+    <div>Controls:</div>
+    <img class="icon on" src="resources/arrows_on.png" />
+    <img class="icon" src="resources/awsd_off.png" />
+    <img class="icon" src="resources/mouse_off.png" />
+    <img class="icon" src="resources/touch_off.png" />
   </div>
   <script>
     const ROWS = 4
