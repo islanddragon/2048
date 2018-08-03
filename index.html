@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2048</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    #game {
+      height: 160px;
+      width: 160px;
+    }
+
+    .cell {
+      width: calc(100% * (1/4) - 2px);
+      height: 40px;
+      border: 1px solid gray;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .val_0 {
+      background-color: #FFFFFF;
+    }
+
+    .val_2 {
+      background-color: #F0F0F0;
+    }
+
+    .val_4 {
+      background-color: #C0C0C0;
+    }
+
+    .val_8 {
+      background-color: #FFCCCC;
+    }
+
+    .val_16 {
+      background-color: #FFAAAA;
+    }
+
+    .val_32 {
+      background-color: #CCFFCC;
+    }
+
+    .val_64 {
+      background-color: #AAFFAA;
+    }
+
+    .val_128 {
+      background-color: #CCCCFF;
+    }
+
+    .val_256 {
+      background-color: #AAAAFF;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game">
+  </div>
+  <script>
+    const ROWS = 4
+    const COLS = 4
+    let game = document.getElementById('game')
+    let cells = []
+
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        let id = x + y * COLS
+        let el = document.createElement('div')
+        let value = 0
+        el.className = `cell val_${value} cell_${id} row_${y} col_${x}`
+        el.innerText = value
+        game.appendChild(el)
+        cells.push({ id, x, y, el, value })
+      }
+    }
+
+    const update = (index, val) => {
+      const cell = cells[index]
+      cell.value = val
+      cell.el.innerText = val
+      cell.el.className = `cell val_${cell.value} cell_${cell.id} row_${cell.y} col_${cell.x}`
+    }
+
+    const spawn = () => {
+      // return
+      let validCells = cells.filter(c => c.value === 0)
+      if (validCells.length === 0) throw 'End Game, no empty cells!'
+      let index = Math.round(Math.random() * (validCells.length - 1))
+      update(validCells[index].id, 2)
+    }
+
+    spawn()
+
+    const log = () => false
+
+    const movements = {
+      38: [
+        [0, 4, 8, 12],
+        [1, 5, 9, 13],
+        [2, 6, 10, 14],
+        [3, 7, 11, 15],
+      ],
+      39: [
+        [3, 2, 1, 0],
+        [7, 6, 5, 4],
+        [11, 10, 9, 8],
+        [15, 14, 13, 12],
+      ],
+      40: [
+        [12, 8, 4, 0],
+        [13, 9, 5, 1],
+        [14, 10, 6, 2],
+        [15, 11, 7, 3],
+      ],
+      37: [
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+      ],
+    }
+
+    const move = (key) => {
+      let moves = 0
+      movements.hasOwnProperty(key) && movements[key].map(seq => seq.reduce((acc, value, i, arr) => {
+        let current = cells[acc]
+        log(`Iteration ${i}`)
+        log(`Current tile[${acc}] = ${current.value}`)
+        let set = arr.slice(i)
+        log(set)
+
+        for (let k = 0; k < set.length; k++) {
+          const lookupI = set[k];
+          let lookup = cells[lookupI]
+          log(` Lookup tile[${lookupI}] = ${lookup.value}`)
+
+          if (current.value === 0) {
+            log(`   Current is 0`)
+            if (lookup.value !== 0) {
+              log(`   Lookup is not 0`)
+              log(`   Tile[${lookupI}] = ${lookup.value} moved to Tile[${acc}] = ${current.value} `)
+              update(acc, lookup.value)
+              update(lookupI, 0)
+              moves += 1
+              k = 0
+            }
+          } else {
+            log(`   Current is not 0`)
+            if (lookup.value === current.value) {
+              log(`   Lookup is not 0`)
+              log(`   Tile[${lookupI}] = ${lookup.value} moved to Tile[${acc}] = ${current.value} `)
+              update(acc, current.value * 2)
+              update(lookupI, 0)
+              moves += 1
+              return value
+            } else {
+              log(`   Lookup is not equal to current`)
+              return value
+            }
+          }
+        }
+        return value
+      }))
+
+      if (moves > 0) {
+        spawn()
+      }
+    }
+    document.addEventListener('keyup', e => move(e.keyCode))
+  </script>
+</body>
+
+</html>
