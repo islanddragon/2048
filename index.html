@@ -12,6 +12,15 @@
       width: 160px;
     }
 
+    @keyframes new_tile {
+      from {
+        background-color: #aaFFaa;
+      }
+      to {
+        background-color: #E0EEDC;
+      }
+    }
+
     .cell {
       width: calc(100% * (1/4) - 2px);
       height: 40px;
@@ -31,6 +40,12 @@
       border-color: #97C88C;
       border-radius: 25%;
       background-color: #E0EEDC;
+    }
+
+    .val_new {
+      animation-name: new_tile;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
     }
 
     .val_0 {
@@ -120,6 +135,8 @@
       if (validCells.length === 0) throw 'End Game, no empty cells!'
       let index = Math.round(Math.random() * (validCells.length - 1))
       update(validCells[index].id, 2)
+      cells.map(c => c.el.className = c.el.className.replace(' val_new', ''))
+      validCells[index].el.className += " val_new"
     }
 
     spawn()
