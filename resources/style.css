@@ -1,0 +1,89 @@
+#game {
+  height: 320px;
+  width: 320px;
+  margin: 0 auto;
+}
+
+#controls {
+  width: 320px;
+  margin: 0 auto;
+}
+
+#version {
+  margin-top: 10px;
+  display: block;
+  color: steelblue;
+  text-align: right;
+}
+
+@keyframes new_tile {
+  from {
+    background-color: #aaFFaa;
+  }
+  to {
+    background-color: #E0EEDC;
+  }
+}
+
+.cell {
+  width: calc(100% * (1/4) - 2px);
+  line-height: 78px;
+  border: 1px solid gray;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.icon {
+  border: 2px solid #cccccc;
+  border-radius: 25%;
+  background-color: #eeeeee;
+}
+
+.icon.on {
+  border-color: #97C88C;
+  border-radius: 25%;
+  background-color: #E0EEDC;
+}
+
+.val_new {
+  animation-name: new_tile;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.val_0 {
+  background-color: #FFFFFF;
+}
+
+.val_2 {
+  background-color: #F0F0F0;
+}
+
+.val_4 {
+  background-color: #C0C0C0;
+}
+
+.val_8 {
+  background-color: #FFCCCC;
+}
+
+.val_16 {
+  background-color: #FFAAAA;
+}
+
+.val_32 {
+  background-color: #CCFFCC;
+}
+
+.val_64 {
+  background-color: #AAFFAA;
+}
+
+.val_128 {
+  background-color: #CCCCFF;
+}
+
+.val_256 {
+  background-color: #AAAAFF;
+}
