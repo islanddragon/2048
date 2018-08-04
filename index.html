@@ -8,8 +8,14 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <style>
     #game {
-      height: 160px;
-      width: 160px;
+      height: 320px;
+      width: 320px;
+      margin: 0 auto;
+    }
+
+    #controls {
+      width: 320px;
+      margin: 0 auto;
     }
 
     @keyframes new_tile {
@@ -23,7 +29,7 @@
 
     .cell {
       width: calc(100% * (1/4) - 2px);
-      height: 40px;
+      line-height: 78px;
       border: 1px solid gray;
       display: inline-block;
       text-align: center;
@@ -92,7 +98,7 @@
   </div>
   <br />
   <div id="controls">
-    <div>Controls: (green: Implemented, gray: Planned)</div>
+    <div>Controls:<br>(green: Implemented, gray: Planned)</div>
     <img alt="Implemented Arrows" class="icon on" src="resources/arrows_on.png" />
     <img alt="Implemented AWSD" class="icon" src="resources/awsd_on.png" />
     <img alt="Implemented Mouse" class="icon" src="resources/mouse_on.png" />
