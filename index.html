@@ -18,6 +18,13 @@
       margin: 0 auto;
     }
 
+    #version {
+      margin-top: 10px;
+      display: block;
+      color: steelblue;
+      text-align: right;
+    }
+
     @keyframes new_tile {
       from {
         background-color: #aaFFaa;
@@ -103,6 +110,7 @@
     <img alt="Implemented AWSD" class="icon" src="resources/awsd_on.png" />
     <img alt="Implemented Mouse" class="icon" src="resources/mouse_on.png" />
     <img alt="Implemented Touch" class="icon" src="resources/touch_on.png" />
+    <span id="version">Ver: 0.2.0</span>
   </div>
   <script>
     const ROWS = 4
@@ -181,7 +189,6 @@
     }
 
     const move = (key) => {
-      console.log(key)
       let moves = 0
       movements.hasOwnProperty(key) && movements[key].map(seq => seq.reduce((acc, value, i, arr) => {
         let current = cells[acc]
@@ -214,6 +221,8 @@
               update(lookupI, 0)
               moves += 1
               return value
+            } else if (lookup.value === 0) {
+              continue
             } else {
               log(`   Lookup is not equal to current`)
               return value
