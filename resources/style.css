@@ -1,10 +1,19 @@
+.container {
+  width: 320px;
+  margin: 0 auto;
+  color: steelblue;
+}
+
+h1 {
+  color: steelblue;
+}
+
 #end {
   visibility: hidden;
 }
 #end.over {
   visibility: visible;
   background-color: #FFCCCC;
-  width: 320px;
   color: #000000;
   margin: 0px auto 20px auto;
   padding: 5px 0px;
@@ -12,17 +21,6 @@
 
 #score {
   float: right;
-}
-
-#game {
-  height: 320px;
-  width: 320px;
-  margin: 0 auto;
-}
-
-#controls {
-  width: 320px;
-  margin: 0 auto;
 }
 
 #version {
@@ -49,6 +47,10 @@
   text-align: center;
   vertical-align: middle;
   border-radius: 10%;
+  color: #444444;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 32px;
 }
 
 .icon {
