@@ -4,7 +4,8 @@ const COLS = 4
 let game = document.getElementById('game')
 let scoreLbl = document.getElementById('score')
 let restartBtn = document.getElementById('restart')
-let end = document.getElementById('end')
+let endLbl = document.getElementById('end')
+let scoreVal = scoreLbl.children[1]
 
 var hammertime = new Hammer(game)
 hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL })
@@ -13,7 +14,7 @@ hammertime.on('swipeleft swiperight swipeup swipedown', ev => move({ swipeup: 38
 let cells = []
 
 const restart = () => {
-  end.className = ''
+  endLbl.className = ''
   cells = []
   game.innerHTML = ""
   for (let y = 0; y < ROWS; y++) {
@@ -28,6 +29,7 @@ const restart = () => {
     }
   }
   spawn()
+  scoreVal.innerText = '0'
 }
 
 const update = (index, val) => {
@@ -35,6 +37,10 @@ const update = (index, val) => {
   cell.value = val
   cell.el.innerText = val
   cell.el.className = `cell val_${cell.value} cell_${cell.id} row_${cell.y} col_${cell.x}`
+}
+
+const score = (val) => {
+  scoreVal.innerText = parseInt(scoreVal.innerText) + val
 }
 
 const spawn = () => {
@@ -132,6 +138,7 @@ const move = (key) => {
           log(`   Lookup is not 0`)
           log(`   Tile[${lookupI}] = ${lookup.value} moved to Tile[${acc}] = ${current.value} `)
           update(acc, current.value * 2)
+          score(current.value * 2)
           update(lookupI, 0)
           moves += 1
           return value
@@ -147,7 +154,7 @@ const move = (key) => {
   }))
 
   if (movesLeft() === false) {
-    end.className = 'over'
+    endLbl.className = 'over'
     return
   }
 
