@@ -4,13 +4,10 @@
   color: steelblue;
 }
 
-h1 {
-  color: steelblue;
-}
-
 #end {
   visibility: hidden;
 }
+
 #end.over {
   visibility: visible;
   background-color: #FFCCCC;
@@ -30,27 +27,62 @@ h1 {
   text-align: right;
 }
 
-@keyframes new_tile {
-  from {
-    background-color: #aaFFaa;
-  }
-  to {
-    background-color: #E0EEDC;
-  }
+#game {
+  position: relative;
+  height: 320px;
+  width: 320px;
+  background-color: #444444;
+  border-radius: 10px;
+  font-size: 0px;
+  padding: 2.5px;
 }
 
-.cell {
-  width: calc(100% * (1/4) - 2px);
-  line-height: 78px;
-  border: 1px solid gray;
+.tile {
+  position: absolute;
+  margin: 2.5px;
+  transition: 100ms ease-in-out;
+  transition-property: transform;
+  z-index: 1;
+}
+
+.tile div {
+  height: 75px;
+  width: 75px;
+  line-height: 75px;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  border-radius: 10%;
   color: #444444;
   font-weight: bold;
   font-family: monospace;
+  border-radius: 10px;
   font-size: 32px;
+  z-index: 2;
+}
+
+@keyframes new_tile {
+  0%    { transform: scale(0.5); }
+  75%   { transform: scale(1.1); }
+  100%  { transform: scale(1); }
+}
+
+.tile_merged div {
+  animation: new_tile 100ms
+}
+
+.tile_spawned div {
+  animation: new_tile 100ms
+}
+
+#bg .cell {
+  display: inline-block;
+  height: 75px;
+  width: 75px;
+  border-radius: 10px;
+  margin: 2.5px 2.5px 2.5px 2.5px;
+  z-index: 0;
+  position: relative;
+  background-color: #666666;
 }
 
 .icon {
@@ -65,46 +97,68 @@ h1 {
   background-color: #E0EEDC;
 }
 
-.val_new {
-  animation-name: new_tile;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
+/* #region: locations */
 
-.val_0 {
+.loc_0_0 { transform: translate(0px, 0px) }
+.loc_1_0 { transform: translate(80px, 0px) }
+.loc_2_0 { transform: translate(160px, 0px) }
+.loc_3_0 { transform: translate(240px, 0px) }
+
+.loc_0_1 { transform: translate(0px, 80px) }
+.loc_1_1 { transform: translate(80px, 80px) }
+.loc_2_1 { transform: translate(160px, 80px) }
+.loc_3_1 { transform: translate(240px, 80px) }
+
+.loc_0_2 { transform: translate(0px, 160px) }
+.loc_1_2 { transform: translate(80px, 160px) }
+.loc_2_2 { transform: translate(160px, 160px) }
+.loc_3_2 { transform: translate(240px, 160px) }
+
+.loc_0_3 { transform: translate(0px, 240px) }
+.loc_1_3 { transform: translate(80px, 240px) }
+.loc_2_3 { transform: translate(160px, 240px) }
+.loc_3_3 { transform: translate(240px, 240px) }
+
+/* #endregion */
+
+/* #region: vals */
+
+.tile_0 div {
   background-color: #FFFFFF;
   color: #FFFFFF;
   border-color: #EEEEEE;
 }
 
-.val_2 {
+.tile_2 div {
   background-color: #F0F0F0;
 }
 
-.val_4 {
+.tile_4 div {
   background-color: #C0C0C0;
 }
 
-.val_8 {
+.tile_8 div {
   background-color: #FFCCCC;
 }
 
-.val_16 {
+.tile_16 div {
   background-color: #FFAAAA;
 }
 
-.val_32 {
+.tile_32 div {
   background-color: #CCFFCC;
 }
 
-.val_64 {
+.tile_64 div {
   background-color: #AAFFAA;
 }
 
-.val_128 {
+.tile_128 div {
   background-color: #CCCCFF;
 }
 
-.val_256 {
+.tile_256 div {
   background-color: #AAAAFF;
 }
+
+/* #endregion */

@@ -6,32 +6,53 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>2048</title>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="resources/style.css?ver=0.6.0">
+  <link rel="stylesheet" href="resources/style.css?ver=0.7.0">
   <script src="resources/hammer.min.js"></script>
 </head>
 
 <body>
   <div class="container">
     <h1>2048</h1>
-    <div id="game"></div>
+    <div id="game">
+      <div id="tiles">
+      </div>
+      <div id="bg">
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+        <div class="cell">&nbsp;</div>
+      </div>
+    </div>
     <div id="end">Game Over</div>
     <div id="controls">
       <div id="score">
         <label>Score: </label>
-        <span>0</span>
+        <span id="scoreVal">0</span>
       </div>
       <button id="restart">Restart</button>
       <br />
       <br />
       <div>Controls:</div>
       <img alt="Implemented Arrows" class="icon on" src="resources/arrows_on.png" />
-      <img alt="Implemented AWSD" class="icon" src="resources/awsd_on.png" />
-      <img alt="Implemented Mouse" class="icon" src="resources/mouse_on.png" />
-      <img alt="Implemented Touch" class="icon" src="resources/touch_on.png" />
-      <span id="version">Ver: 0.6.0</span>
+      <img alt="Implemented AWSD" class="icon on" src="resources/awsd_on.png" />
+      <img alt="Implemented Mouse" class="icon on" src="resources/mouse_on.png" />
+      <img alt="Implemented Touch" class="icon on" src="resources/touch_on.png" />
+      <span id="version">Ver: 0.7.0</span>
     </div>
   </div>
-  <script src="resources/game.js?ver=0.6.0"></script>
+  <script src="resources/game.js?ver=0.7.0"></script>
 </body>
 
 </html>
