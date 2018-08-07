@@ -60,6 +60,7 @@ const view = {
   scoreLbl: document.getElementById('score'),
   restartBtn: document.getElementById('restart'),
   end: document.getElementById('end'),
+  win: document.getElementById('win'),
   scoreVal: document.getElementById('scoreVal'),
 }
 
@@ -210,6 +211,11 @@ const merge = (fromX, fromY, toX, toY) => {
 }
 
 const executeAction = (key) => {
+  if (model.tiles.find(t => t.value >= 2048)) {
+    view.win.className = 'over'
+    return new Promise(resolve => resolve())
+  }
+
   let movements = []
 
   model.movements[keyMap[key]].map(seq => seq.reduce((acc, value, i, arr) => {

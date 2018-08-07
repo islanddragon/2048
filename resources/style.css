@@ -16,6 +16,18 @@
   padding: 5px 0px;
 }
 
+#win {
+  visibility: hidden;
+}
+
+#win.over {
+  visibility: visible;
+  background-color: #CCFFCC;
+  color: #000000;
+  margin: 0px auto 20px auto;
+  padding: 5px 0px;
+}
+
 #score {
   float: right;
 }
